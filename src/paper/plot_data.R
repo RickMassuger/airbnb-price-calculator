@@ -1,8 +1,10 @@
 
 # PLOT ANTWERP 
-
+library(readr)
+library(dplyr)
+library(ggplot2)
 ## import the data from `gen/analysis/pivot_table`
-df_pivot <- read_csv("./gen/analysis/pivot_table.csv")
+df_pivot <- read_csv("../../gen/analysis/pivot_table.csv")
 
 pdf("plot_Antwerp.pdf")
 plot(x = df_pivot$date, 
@@ -23,14 +25,14 @@ dev.off()
 # PLOT ALL
 
 ## import the data from `gen/data-preparation/aggregated_df.csv`
-df <- read_csv("gen/data-preparation/aggregated_df.csv")
+df <- read_csv("../../gen/data-preparation/aggregated_df.csv")
 
 ## group by date and calculate the sum of all reviews across neighbourhoods.
 df_groupby <- df %>% group_by(date) %>% summarise(num_reviews = sum(num_reviews))
 
-dir.create("./gen/paper")
+dir.create("../../gen/paper")
 ## plot the chart and store the visualisation.
-pdf("./gen/paper/plot_all.pdf")
+pdf("../../gen/paper/plot_all.pdf")
 plot(x = df_groupby$date, 
      y = df_groupby$num_reviews, 
      type = "l", 

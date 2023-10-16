@@ -1,7 +1,8 @@
 # CLEAN DATA 
 library(readr)
-reviews <- read_csv("./gen/data-preparation/reviews.csv")
-listings <- read_csv("./gen/data-preparation/listings.csv")
+library(dplyr)
+reviews <- read_csv("../../gen/data-preparation/reviews.csv")
+listings <- read_csv("../../gen/data-preparation/listings.csv")
 
 ## filter for reviews published since 01/01/2015
 reviews_filtered <- reviews %>% filter(date > "2015-01-01")
@@ -23,8 +24,8 @@ df_grouped <- df_grouped %>% mutate(date = as.Date(paste0(year, "-", month, "-01
 
 
 ## store the final data frame in `gen/data-preparation` as `aggregated_df.csv`
-write_csv(df_grouped, "./gen/data-preparation/aggregated_df.csv")
+write_csv(df_grouped, "../../gen/data-preparation/aggregated_df.csv")
 
 
-dir.create("./gen/analysis")
+dir.create("../../gen/analysis")
 
